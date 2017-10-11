@@ -23,8 +23,13 @@ and what you should write is the sayHi function that makes the code above work,
 // 1. Write a function called first that returns the first item of the array using a callback function
 
   // Code Here
+function first(arr,cb){
+  cb(arr[0]);
+};
 
-  
+
+
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
   console.log('The first name in names is ' + firstName);
@@ -36,7 +41,9 @@ first(names, function(firstName){
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
   //Code Here
-
+function last(arr,cb){
+  cb(arr[arr.length-1])
+};
 
 
 last(names, function(lastName){
@@ -49,7 +56,9 @@ last(names, function(lastName){
 // 3. Write a function called multiply that multiplies two numbers. Invoke the callback with the result of the multiplication. 
 
   //Code Here
-
+function multiply(num1, num2, cb){
+  cb(num1 * num2);
+}
 
 
 multiply(4, 3, function(answer){
@@ -63,7 +72,12 @@ multiply(4, 3, function(answer){
 // If the name does not exist, invoke the callback with false as an argument.
 
   //Code Here 
-
+function contains(names, item, cb){
+  if (names.indexOf(item >= 0)){
+    cb(true);
+  }
+  cb(false);
+}
 
 
 
@@ -81,7 +95,10 @@ contains(names, 'Colt', function(result){
 // Invoke the callback with the modified array as an argument.
 
   //Code Here
-
+function uniq(names, cb){
+  names = names.filter((x,y) => names.indexOf(x) == y )
+  cb(names);
+}
 
 
 uniq(names, function(uniqArr){
@@ -92,7 +109,11 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     //Code Here 
-
+function each(names,cb){
+  for (i=0;i<names.length;i++){
+    cb(names[i], i)
+  }
+}
 
 
 each(names, function(item, indice){
@@ -105,6 +126,16 @@ each(names, function(item, indice){
 // When the correct user object is found, invoke the callback with the user object as an argument.
 
 // Code here
+function getUserById(users, req, cb){
+  var newReq;
+  for (let i = 0; i<users.length;i++){
+    if (users[i].id === req){
+      newReq= users[i];
+    }
+  }
+ cb(newReq);
+}
+  
 
 
 
